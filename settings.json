@@ -1,0 +1,23 @@
+{
+    "servicerestart": "service wikijs restart",
+    "options": {
+        "dbname": {
+            "type": "string",
+            "name": "Database name",
+            "description": "Database to use for Wiki.js setup",
+            "readonly": true
+        },
+        "dbuser": {
+            "type": "string",
+            "name": "Database user",
+            "description": "Database user to use for Wiki.js setup",
+            "readonly": true
+        },
+        "dbpassword": {
+            "type": "string",
+            "name": "Database password",
+            "description": "Password to use for Wiki.js setup",
+            "readonly": true
+        }
+    }
+}

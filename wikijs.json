@@ -1,0 +1,16 @@
+{
+    "name": "Wiki.js",
+    "release": "12.1-RELEASE",
+    "artifact": "",
+    "official": false,
+    "properties": {
+        "dhcp": 1
+    },
+    "pkgs": [
+        "node",
+        "wget",
+        "postgresql11-server",
+        "postgresql11-client"
+    ],
+    "packagesite": ""
+}
