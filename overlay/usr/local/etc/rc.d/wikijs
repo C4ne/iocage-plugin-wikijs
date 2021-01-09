@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# PROVIDE: wikijs
+# REQUIRE: networking postgresql
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="wikijs"
+# Only execute commands if wikijs_enable is set to YES
+rcvar="${name}_enable"
+
+: ${wikijs_enable="NO"}
+: ${wikijs_runAs="wikijs"}
+
+# Change dir before executing daemon
+wikijs_chdir="/usr/local/www/wikijs"
+
+# So we can use service wikijs status
+pidfile="/var/run/${name}_daemon.pid"
+pidfile_wikijs="/var/run/${name}.pid"
+logfile="/var/log/wikijs.log"
+
+command="/usr/sbin/daemon"
+command_args="-u $wikijs_runAs -t $name -o $logfile -p $pidfile_wikijs -P $pidfile /usr/local/bin/node server"
+
+load_rc_config $name
+run_rc_command "$1"

@@ -2,7 +2,7 @@
 
 # Enable the service
 sysrc -f /etc/rc.conf postgresql_enable=YES
-sysrc -f /etc/rc.conf node_enable=YES
+sysrc -f /etc/rc.conf wikijs_enable=YES
 
 # Start postgres
 service postgresql initdb
@@ -10,6 +10,10 @@ service postgresql start
 
 USER="wikijs"
 DB="wikijs_production"
+DOCUMENTROOT="/usr/local/www/wikijs"
+
+# Add user who will run node
+pw useradd -n "$USER" -d /nonexistent -s /usr/sbin/nologin -c "User that runs Wiki.js"
 
 # Save the config values
 echo "$DB" > /root/dbname
@@ -29,12 +33,17 @@ psql -d template1 -U postgres -c "ALTER USER ${USER} WITH PASSWORD '${PASS}';"
 # Postgresql must be restarted after config change
 service postgresql restart
 
-# Install Wiki.js
+# Get Wiki.js
 wget https://github.com/Requarks/wiki/releases/download/2.5.170/wiki-js.tar.gz
 
 # Decrompress Wiki.js
-mkdir wiki
-tar xzf wiki-js.tar.gz -C ./wiki
+mkdir -p $DOCUMENTROOT
+cd $DOCUMENTROOT
+tar xzf wiki-js.tar.gz -C $DOCUMENTROOT
+
+# Apply the correct acces rights to our documentroot
+chmod -R 550 $DOCUMENTROOT
+chown -R $USER:wheel $DOCUMENTROOT
 
 # Start Wiki.js
-node server
+service wikijs start
