@@ -41,19 +41,16 @@ fetch https://github.com/Requarks/wiki/releases/download/2.5.170/wiki-js.tar.gz
 mkdir -p $DOCUMENTROOT
 tar xzf wiki-js.tar.gz -C $DOCUMENTROOT
 
+# Configure Wiki.js
+cp -p $DOCUMENTROOT/config.sample.yml $DOCUMENTROOT/config.yml
+sed -i '' -e "11s/.*/port: 80/" $DOCUMENTROOT/config.yml
+sed -i '' -e "29s/.*/  user: $USER/" $DOCUMENTROOT/config.yml
+sed -i '' -e "30s/.*/  pass: $PASS/" $DOCUMENTROOT/config.yml
+sed -i '' -e "31s/.*/  db: $DB/" $DOCUMENTROOT/config.yml
+
 # Apply the correct acces rights to our documentroot
 chmod -R 550 $DOCUMENTROOT
 chown -R $USER:wheel $DOCUMENTROOT
-
-# Remove the tools that we dont need anymore
-pkg delete wget
-
-# Configure Wiki.js
-cp -p $DOCUMENTROOT/config.sample.yml $DOCUMENTROOT/config.yml
-sed -i "8iport: 80" $DOCUMENTROOT/config.yml
-sed -i "29i  user: $USER" $DOCUMENTROOT/config.yml
-sed -i "30i  pass: $PASS" $DOCUMENTROOT/config.yml
-sed -i "31i  db: $DB" $DOCUMENTROOT/config.yml
 
 # Start Wiki.js
 service wikijs start
