@@ -51,6 +51,7 @@ pkg delete wget
 
 # Configure Wiki.js
 cp -p $DOCUMENTROOT/config.sample.yml $DOCUMENTROOT/config.yml
+sed -i "8iport: 80" $DOCUMENTROOT/config.yml
 sed -i "29i  user: $USER" $DOCUMENTROOT/config.yml
 sed -i "30i  pass: $PASS" $DOCUMENTROOT/config.yml
 sed -i "31i  db: $DB" $DOCUMENTROOT/config.yml
