@@ -48,7 +48,7 @@ sed -i '' -e "30s/.*/  pass: $PASS/" $DOCUMENTROOT/config.yml
 sed -i '' -e "31s/.*/  db: $DB/" $DOCUMENTROOT/config.yml
 
 # Apply the correct acces rights to our documentroot
-chmod -R 550 $DOCUMENTROOT
+chmod -R 750 $DOCUMENTROOT
 chown -R $USER:wheel $DOCUMENTROOT
 
 # Start Wiki.js
