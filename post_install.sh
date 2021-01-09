@@ -71,8 +71,8 @@ sed -i '' -e "31s/.*/  db: $DB/" $DOCUMENTROOT/config.yml
 
 # Enable and configure SSL
 sed -i '' -e "61s/.*/  enabled: true/" $DOCUMENTROOT/config.yml
-sed -i '' -e "71s/.*/  key: $SSL_KEY/" $DOCUMENTROOT/config.yml
-sed -i '' -e "72s/.*/  cert: $SSL_CERT/" $DOCUMENTROOT/config.yml
+sed -i '' -e "71s/.*/  key: $(echo $SSL_KEY | sed 's/\//\\\//g')/" $DOCUMENTROOT/config.yml
+sed -i '' -e "72s/.*/  cert: $(echo $SSL_CERT | sed 's/\//\\\//g')/" $DOCUMENTROOT/config.yml
 
 # Make Wiki.js bind to the current IP
 sed -i '' -e "99s/.*/bindIP: $IPV4" $DOCUMENTROOT/config.yml
