@@ -8,7 +8,6 @@
     },
     "pkgs": [
         "node",
-        "wget",
         "postgresql11-server",
         "postgresql11-client"
     ],

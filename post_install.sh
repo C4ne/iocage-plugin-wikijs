@@ -35,11 +35,10 @@ psql -d template1 -U postgres -c "ALTER USER ${USER} WITH PASSWORD '${PASS}';"
 service postgresql restart
 
 # Get Wiki.js
-wget https://github.com/Requarks/wiki/releases/download/2.5.170/wiki-js.tar.gz
+fetch https://github.com/Requarks/wiki/releases/download/2.5.170/wiki-js.tar.gz
 
 # Decrompress Wiki.js
 mkdir -p $DOCUMENTROOT
-cd $DOCUMENTROOT
 tar xzf wiki-js.tar.gz -C $DOCUMENTROOT
 
 # Apply the correct acces rights to our documentroot
