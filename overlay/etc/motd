@@ -1,0 +1,18 @@
+ __    __ _ _    _    _     
+/ / /\ \ (_) | _(_)  (_)___ 
+\ \/  \/ / | |/ / |  | / __|
+ \  /\  /| |   <| |_ | \__ \
+  \/  \/ |_|_|\_\_(_)/ |___/
+                   |__/     
+
+- Plugin directory at
+    /usr/local/www/wikijs/
+
+- Plugin settings at
+    /usr/local/www/wikijs/config.yml
+
+- Logfile at
+    /var/log/wikijs.log
+
+- How to control the service
+    service wikijs [start|stop|restart|status]
