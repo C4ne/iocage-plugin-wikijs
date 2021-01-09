@@ -19,9 +19,12 @@ SSL_KEY="/etc/ssl/private/key.pem"
 SSL_CERT="/etc/ssl/certs/cert.pem"
 
 if ! route get "$IPV4"; then
-    echo "IP address \'$IPV4\' doesn't seem to be valid or accssible on this host"
+    echo "IP address \'$IPV4\' doesn't seem to be valid"
     exit 1
 fi
+
+# Add a user who will run node
+pw useradd -n "$USER" -d /nonexistent -s /usr/sbin/nologin -c "User that runs Wiki.js"
 
 # Generate SSL certificate and key
 mkdir /etc/ssl/private
@@ -33,9 +36,6 @@ chmod 400 "$SSL_KEY"
 chmod 400 "$SSL_CERT"
 chown wikijs "$SSL_KEY"
 chown wikijs "$SSL_CERT"
-
-# Add a user who will run node
-pw useradd -n "$USER" -d /nonexistent -s /usr/sbin/nologin -c "User that runs Wiki.js"
 
 # Save the config values
 echo "$DB" > /root/dbname
