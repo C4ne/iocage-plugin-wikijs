@@ -1,5 +1,7 @@
 {
     "servicerestart": "service wikijs restart",
+	"serviceget": "/usr/local/bin/pluginget",
+	"serviceset": "/usr/local/bin/pluginset",
     "options": {
         "dbname": {
             "type": "string",

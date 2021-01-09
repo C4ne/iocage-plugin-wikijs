@@ -1,7 +1,7 @@
 {
     "name": "Wiki.js",
     "release": "12.1-RELEASE",
-    "artifact": "",
+    "artifact": "https://github.com/C4ne/iocage-plugin-wikijs",
     "official": false,
     "properties": {
         "dhcp": 1
