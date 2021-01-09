@@ -1,0 +1,10 @@
+#!/bin/sh
+
+get_logging() {
+    echo $(cat /usr/local/www/wikijs/config.yml | grep logLevel | sed -n 's/logLevel: \(.*\)$/\1/p' | tr -d '\n')
+}
+
+case $1 in
+	logging) get_logging ;;
+	*) echo "Unknown option" ;;
+esac

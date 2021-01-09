@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set_logging() {
+    sed -i '' -e "106s/.*/logLevel: $2/" /usr/local/www/wikijs/config.yml
+}
+
+case $1 in
+    logging) set_logging "$2";;
+    *) echo "Unknown option" ;;
+esac

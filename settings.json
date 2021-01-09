@@ -1,7 +1,7 @@
 {
     "servicerestart": "service wikijs restart",
-	"serviceget": "/usr/local/bin/pluginget",
-	"serviceset": "/usr/local/bin/pluginset",
+    "serviceget": "/usr/local/bin/wikijsget",
+    "serviceset": "/usr/local/bin/wikijsset",
     "options": {
         "dbname": {
             "type": "string",
@@ -20,6 +20,21 @@
             "name": "Database password",
             "description": "Password to use for Wiki.js setup",
             "readonly": true
+        },
+        "logging": {
+            "type": "combo",
+            "name": "Logging verbosity",
+            "description": "Change the logging verbosity setting of Wiki.js",
+            "requirerestart": true,
+            "default": "info",
+            "options": {
+                "error": "Error",
+                "warn": "Warn",
+                "info": "Info",
+                "verbose": "Verbose",
+                "debug": "Debug",
+                "silly": "Very verbose (silly)"
+            }
         }
     }
 }
