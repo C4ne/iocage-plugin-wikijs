@@ -13,15 +13,8 @@ service postgresql start
 USER="wikijs"
 DB="wikijs_production"
 DOCUMENTROOT="/usr/local/www/wikijs"
-INTERFACE="$(route get default | awk '$1 == "interface:" {print $2}')"
-IPV4="$(ifconfig $if | awk '$1 == "inet" {print $2}')"
 SSL_KEY="/etc/ssl/private/key.pem"
 SSL_CERT="/etc/ssl/certs/cert.pem"
-
-if ! route get "$IPV4" > /dev/null 2> /dev/null; then
-    echo "IP address \'$IPV4\' doesn't seem to be valid"
-    exit 1
-fi
 
 # Add a user who will run node
 pw useradd -n "$USER" -d /nonexistent -s /usr/sbin/nologin -c "User that runs Wiki.js"
@@ -73,9 +66,6 @@ sed -i '' -e "31s/.*/  db: $DB/" $DOCUMENTROOT/config.yml
 sed -i '' -e "61s/.*/  enabled: true/" $DOCUMENTROOT/config.yml
 sed -i '' -e "71s/.*/  key: $(echo $SSL_KEY | sed 's/\//\\\//g')/" $DOCUMENTROOT/config.yml
 sed -i '' -e "72s/.*/  cert: $(echo $SSL_CERT | sed 's/\//\\\//g')/" $DOCUMENTROOT/config.yml
-
-# Make Wiki.js bind to the current IP
-sed -i '' -e "99s/.*/bindIP: $IPV4" $DOCUMENTROOT/config.yml
 
 # Apply the correct acces rights to our documentroot
 chmod -R 750 $DOCUMENTROOT
