@@ -18,7 +18,7 @@ IPV4="$(ifconfig $if | awk '$1 == "inet" {print $2}')"
 SSL_KEY="/etc/ssl/private/key.pem"
 SSL_CERT="/etc/ssl/certs/cert.pem"
 
-if ! route get "$IPV4"; then
+if ! route get "$IPV4" > /dev/null 2> /dev/null; then
     echo "IP address \'$IPV4\' doesn't seem to be valid"
     exit 1
 fi
@@ -70,9 +70,9 @@ sed -i '' -e "30s/.*/  pass: $PASS/" $DOCUMENTROOT/config.yml
 sed -i '' -e "31s/.*/  db: $DB/" $DOCUMENTROOT/config.yml
 
 # Enable and configure SSL
-sed -i '' -e "61s/.*/  enabled: true" $DOCUMENTROOT/config.yml
-sed -i '' -e "71s/.*/  key: $SSL_KEY" $DOCUMENTROOT/config.yml
-sed -i '' -e "61s/.*/  cert: $SSL_CERT" $DOCUMENTROOT/config.yml
+sed -i '' -e "61s/.*/  enabled: true/" $DOCUMENTROOT/config.yml
+sed -i '' -e "71s/.*/  key: $SSL_KEY/" $DOCUMENTROOT/config.yml
+sed -i '' -e "72s/.*/  cert: $SSL_CERT/" $DOCUMENTROOT/config.yml
 
 # Make Wiki.js bind to the current IP
 sed -i '' -e "99s/.*/bindIP: $IPV4" $DOCUMENTROOT/config.yml
