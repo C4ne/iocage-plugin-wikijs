@@ -8,8 +8,8 @@
     },
     "pkgs": [
         "node",
-        "postgresql11-server",
-        "postgresql11-client"
+        "postgresql13-server",
+        "postgresql13-client"
     ],
     "packagesite": "http://pkg.FreeBSD.org/${ABI}/quarterly",
     "fingerprints": {
