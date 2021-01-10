@@ -4,7 +4,8 @@
     "artifact": "https://github.com/C4ne/iocage-plugin-wikijs",
     "official": false,
     "properties": {
-        "dhcp": 1
+        "nat": 1,
+        "nat_forwards": "tcp(3000:3000)"
     },
     "pkgs": [
         "node",
