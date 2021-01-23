@@ -3,4 +3,3 @@
 
 ## Not working
 - The server is not able to send eMails at the moment
-- No SSL atm
